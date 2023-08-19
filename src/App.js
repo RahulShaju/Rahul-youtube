@@ -11,7 +11,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import WatchPage from './components/WatchPage';
 
 function App() {
-  const appRouter = createBrowserRouter([{
+  const appRouter = createBrowserRouter([{ 
     path: '/',
     element: <Body/>,
     children: [
