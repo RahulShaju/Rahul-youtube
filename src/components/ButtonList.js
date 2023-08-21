@@ -86,7 +86,7 @@ const ButtonList = () => {
   const visibleItems = list.slice(startIdx, startIdx + itemsPerPage);
 
   return (
-    <div className="carousel flex mt-5 relative">
+    <div className="carousel flex mt-20 fixed  bg-white w-full"> 
       <div className="arrows flex relative">
         <div className="prev-button-container">
           <button className=" text-white h-12 w-12 rounded-full" onClick={handleClickPrev} hidden={currentPage === 0}>
