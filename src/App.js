@@ -11,6 +11,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import WatchPage from './components/WatchPage';
 
 import SearchVideoContainer from './components/SearchVideoContainer';
+import ShortsContainer from './components/ShortsContainer';
 
 function App() {
   const appRouter = createBrowserRouter([{ 
@@ -28,6 +29,10 @@ function App() {
       {
         path: '/results',
         element: <SearchVideoContainer/>
+      },
+      {
+        path: '/shorts',
+        element:<ShortsContainer/>
       }
     ]
   }])

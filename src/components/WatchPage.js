@@ -6,7 +6,7 @@ import CommentsContainer from "./commentsContainer";
 import LiveChat from "./LiveChat";
 import { YOUTUBE_VIDEO_API, YOUTUBE_VIDEO_BY_ID } from "../utils/constants";
 import { formatViewCount } from "../helpers/viewCount";
-import ButtonList from "./ButtonList";
+// import ButtonList from "./ButtonList";
 import { getTimeAgo } from "../helpers/timeAgo";
 
 
@@ -25,13 +25,13 @@ const WatchPage = () => {
     const data = await fetch(YOUTUBE_VIDEO_BY_ID + videoId);
     const response = await data.json();
     console.log("video data", response);
-    setVideoData(response.items[0]);
+    setVideoData(response?.items?.[0]);
   };
 
   const getRelatedVideos = async () => {
     const data = await fetch(YOUTUBE_VIDEO_API);
     const response = await data.json();
-    console.log("Related videos", response.items);
+    console.log("Related videos", response?.items);
     setRelatedVideos(response?.items);
   };
 

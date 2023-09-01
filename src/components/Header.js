@@ -70,7 +70,7 @@ const Header = () => {
         <img onClick={()=>{
           handleToggleMenu()
           }} className='h-8 cursor-pointer' src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-5.png" alt="menu" />
-        <img className='h-14 mx-10 -my-3 absolute' src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6.jpg" alt="yotube logo" />
+        <img className='h-24 mx-10 -my-8 absolute' src="https://cdn.dribbble.com/users/14365882/screenshots/20257812/videohub.jpg" alt="yotube logo" />
       </div>
       <div className='mx-80 col-span-10 w-3/4 justify-center'>
         <div >

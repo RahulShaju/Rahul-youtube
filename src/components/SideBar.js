@@ -25,6 +25,7 @@ const SideBar = () => {
             </button>
           </li>
         </Link>
+        <Link to={'/shorts'}>
         <li className="text-center">
           {" "}
           <button className="hover:bg-gray-100 w-full h-10 font-medium rounded-xl  flex items-center pl-3 ">
@@ -37,6 +38,7 @@ const SideBar = () => {
             <span className="ml-5">Shorts</span>
           </button>
         </li>
+        </Link>
         <li className="text-center">
           {" "}
           <button className="hover:bg-gray-100 w-full h-10 font-medium rounded-xl  flex items-center pl-3 ">
@@ -52,7 +54,7 @@ const SideBar = () => {
       </ul>
       </div>
       <div className=" border-b-2">
-      <ul>
+      {/* <ul>
         <Link to={"/"}>
           {" "}
           <li className="text-center">
@@ -140,7 +142,7 @@ const SideBar = () => {
             <span className="ml-5">Subscriptions</span>
           </button>
         </li>
-      </ul>
+      </ul> */}
       </div>
       {/* <h1 className="pt-5 font-bold">Watch later</h1>
       <ul>
