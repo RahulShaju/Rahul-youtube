@@ -50,13 +50,14 @@ const CommentsList = ({ comments }) => {
   ));
 };
 
-const CommentsContainer = ({totalComments}) => {
+const CommentsContainer = ({totalComments,videoId}) => {
+  console.log("comments conatiner videoos id",videoId)
     let [searchParams] = useSearchParams();
-    const videoId = searchParams.get('v')
+    
   const [commentsData, setCommentData] = useState([]);
   useEffect(() => {
-    getCommentData();
-  }, []);
+    if(videoId) getCommentData();
+  }, [videoId]);
   const getCommentData = async () => {
     const data = await fetch(YOUTUBE_COMMENTS_API+videoId);
     const response = await data.json();
@@ -66,7 +67,7 @@ const CommentsContainer = ({totalComments}) => {
   return (
     <div className="m-5 px-2">
       <h1 className="text-lg "> {totalComments} Comments </h1>
-      {commentsData.length > 0 ? (
+      {commentsData?.length > 0 ? (
         <CommentsList comments={commentsData} />
       ) : (
         <p>Loading comments...</p>

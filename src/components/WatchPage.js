@@ -1,49 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeMenu } from "../utils/appSlice";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import CommentsContainer from "./commentsContainer";
 import LiveChat from "./LiveChat";
 import { YOUTUBE_VIDEO_API, YOUTUBE_VIDEO_BY_ID } from "../utils/constants";
 import { formatViewCount } from "../helpers/viewCount";
 import ButtonList from "./ButtonList";
+import { getTimeAgo } from "../helpers/timeAgo";
 
-function getTimeAgo(timestamp) {
-  const currentTime = new Date();
-  const inputTime = new Date(timestamp);
 
-  const timeDifference = currentTime - inputTime;
-  const seconds = Math.floor(timeDifference / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const months = Math.floor(days / 30); // Approximate, can be adjusted
-
-  if (months >= 12) {
-    const years = Math.floor(months / 12);
-    return `${years} year${years > 1 ? "s" : ""} ago`;
-  } else if (months > 0) {
-    return `${months} month${months > 1 ? "s" : ""} ago`;
-  } else if (days > 0) {
-    return `${days} day${days > 1 ? "s" : ""} ago`;
-  } else if (hours > 0) {
-    return `${hours} hour${hours > 1 ? "s" : ""} ago`;
-  } else if (minutes > 0) {
-    return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
-  } else {
-    return `${seconds} second${seconds !== 1 ? "s" : ""} ago`;
-  }
-}
 
 const WatchPage = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const [videoData, setVideoData] = useState(null);
   const [relatedVideos, setRelatedVideos] = useState([]);
+  // const [videoId,setVideoId]= useState(null)
 
   // console.log("isMenuOpen - ",isMenuOpen)
 
   let [searchParams] = useSearchParams();
-  const videoId = searchParams.get("v");
+  const videoId = searchParams.get('v')
   const getSpecificVideoData = async () => {
     const data = await fetch(YOUTUBE_VIDEO_BY_ID + videoId);
     const response = await data.json();
@@ -60,10 +37,11 @@ const WatchPage = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    getSpecificVideoData();
+     getSpecificVideoData()
     getRelatedVideos();
+   
     dispatch(closeMenu());
-  }, []);
+  }, [videoId]);
   return (
     <div className="flex-col w-full mr-3 ml-5 ">
       <div className="ml-5 mt-28 flex ">
@@ -72,7 +50,7 @@ const WatchPage = () => {
             className="rounded-3xl"
             width="1000"
             height="600"
-            src={"https://www.youtube.com/embed/" + searchParams.get("v")}
+            src={"https://www.youtube.com/embed/" +videoData?.id}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -128,15 +106,15 @@ const WatchPage = () => {
 
           <div className="w-[1050px]">
             <CommentsContainer
-              totalComments={videoData?.statistics?.commentCount}
+              totalComments={videoData?.statistics?.commentCount} videoId={videoData?.id}
             />
           </div>
         </div>
         <div>
          
         {relatedVideos.map((videoData) => (
-          
-  <div key={videoData?.id} className="flex max-w-full mt-3">
+           <Link key={videoData?.id} to={'/watch?v=' + videoData?.id}>
+  <div  className="flex max-w-full mt-3">
     <img
       className="rounded-lg h-[110px]"
       src={videoData?.snippet?.thumbnails?.medium?.url}
@@ -155,6 +133,7 @@ const WatchPage = () => {
       </div>
     </div>
   </div>
+  </Link>
 ))}
 
         </div>
