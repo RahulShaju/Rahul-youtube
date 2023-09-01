@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { YOUTUBE_VIDEO_API } from '../utils/constants';
-import VideoCard, { ModifiedVideoCard } from './VideoCard';
+import VideoCard from './VideoCard';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ButtonList from './ButtonList';
@@ -10,12 +10,12 @@ const SearchVideoContainer = () => {
   const [videos, setVideos] = useState([]);
   const suggestion = useSelector((store) => store.search.clickedSuggestion);
 
-  const getVideos = async () => {
+  const getVideos = async () => { 
     const data = await fetch(YOUTUBE_VIDEO_API);
     const responseJson = await data.json();
     console.log(responseJson.items);
     setVideos(responseJson.items);
-  };
+  }; 
 
   const filterVideos = useMemo(() => {
     const queryWords = suggestion?.toLowerCase().split(' ').filter(word => word.trim() !== '');
@@ -35,7 +35,7 @@ const SearchVideoContainer = () => {
     <div className={isMenuOpen?'col-span-11 ml-[16.2rem]':"ml-10"}>
         <ButtonList/>
         <div className='flex flex-wrap mt-36' >
-      {filterVideos?.[0] && <ModifiedVideoCard info={filterVideos[0]} name="modifiedcard using HOC" />}
+      {/* {filterVideos?.[0] && <ModifiedVideoCard info={filterVideos[0]} name="modifiedcard using HOC" />} */}
       {filterVideos?.length !== 0 ? (
         filterVideos?.map((video) => (
           <Link key={video?.id} to={'/watch?v=' + video?.id}>
@@ -43,7 +43,7 @@ const SearchVideoContainer = () => {
           </Link>
         ))
       ) : (
-        <p className='font-bold'>Oops!!! No videos found</p>
+        <p className='font-bold'> Oops!!! No videos found</p>
       )}
     </div>
     </div>

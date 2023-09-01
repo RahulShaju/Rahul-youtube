@@ -8,7 +8,9 @@ const MainContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   return (
     <div className={isMenuOpen?'col-span-11 ml-[16.2rem]':"ml-10"}>
+  <div className={isMenuOpen?'col-span-11  ml-3':"ml-10"}>
   <ButtonList/>
+  </div>
       <Videocontainer/>
      
     </div>
