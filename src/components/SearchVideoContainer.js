@@ -11,10 +11,14 @@ const SearchVideoContainer = () => {
   const suggestion = useSelector((store) => store.search.clickedSuggestion);
 
   const getVideos = async () => { 
-    const data = await fetch(YOUTUBE_VIDEO_API);
+    try {
+      const data = await fetch(YOUTUBE_VIDEO_API);
     const responseJson = await data.json();
     console.log(responseJson.items);
     setVideos(responseJson.items);
+    } catch (error) {
+      console.log(error.message)
+    }
   }; 
 
   const filterVideos = useMemo(() => {

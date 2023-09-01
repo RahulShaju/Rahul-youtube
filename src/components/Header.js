@@ -49,16 +49,19 @@ const Header = () => {
   
 
   const getSearchSuggestions = async () => {
-    console.log("api call -" + searchQuery)
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
+  
+    try {
+      const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
     const response = await data.json()
-    console.log(response[1])
     setSuggestions(response[1])
     dispatch(cachedResults({
      searchQuery:searchQuery,
      response:response[1]
     }))
-    // console.log(response[1])
+    } catch (error) {
+      console.log(error.message)
+    }
+    
   }
 
   const handleToggleMenu = () =>{

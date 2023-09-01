@@ -22,17 +22,23 @@ const WatchPage = () => {
   let [searchParams] = useSearchParams();
   const videoId = searchParams.get('v')
   const getSpecificVideoData = async () => {
-    const data = await fetch(YOUTUBE_VIDEO_BY_ID + videoId);
+    try {
+      const data = await fetch(YOUTUBE_VIDEO_BY_ID + videoId);
     const response = await data.json();
-    console.log("video data", response);
     setVideoData(response?.items?.[0]);
+    } catch (error) {
+      console.log(error.message)
+    }
   };
 
   const getRelatedVideos = async () => {
-    const data = await fetch(YOUTUBE_VIDEO_API);
+    try {
+      const data = await fetch(YOUTUBE_VIDEO_API);
     const response = await data.json();
-    console.log("Related videos", response?.items);
     setRelatedVideos(response?.items);
+    } catch (error) {
+      console.log(error.message)
+    }
   };
 
   const dispatch = useDispatch();
