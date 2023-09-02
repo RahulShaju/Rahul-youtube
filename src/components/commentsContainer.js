@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 
 
 const Comment = ({ comment, authorName, authorProfileUrl }) => {
+
   return (
     <div className="flex  p-2 rounded-lg my-2">
       <img
@@ -22,6 +23,7 @@ const Comment = ({ comment, authorName, authorProfileUrl }) => {
 };
 const CommentsList = ({ comments }) => {
   // console.log("comments", comments);
+  const [showReplies,setShowReplies] = useState(false)
 
   return comments?.map((comment, index) => (
     <div key={index}>
@@ -42,9 +44,12 @@ const CommentsList = ({ comments }) => {
     }
       />
       <div className="pl-5  ml-5">
+       {comment?.replies && <button onClick={()=>{
+        setShowReplies(!showReplies)
+       }} className='text-blue-500 text-lg p-3 px-5 flex hover:bg-gray-100 rounded-3xl'><img className="h-6 w-6 mt-1 mr-2" src={!showReplies?"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9InBvaW50ZXItZXZlbnRzOiBub25lOyBkaXNwbGF5OiBibG9jazsgd2lkdGg6IDEwMCU7IGhlaWdodDogMTAwJTsiPgogIDxwYXRoIGQ9Ik03IDEwbDUgNSA1LTV6Ii8+Cjwvc3ZnPg==":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9InBvaW50ZXItZXZlbnRzOiBub25lOyBkaXNwbGF5OiBibG9jazsgd2lkdGg6IDEwMCU7IGhlaWdodDogMTAwJTsiPgogIDxwYXRoIGQ9Ik03IDE0bDUtNSA1IDV6Ii8+Cjwvc3ZnPg=="} alt=""></img>Replies {comment?.replies?.comments?.length} </button> }
         {/* <Comment key={index} comment={comment?.snippet?.textOriginal}/>  */}
 
-        <CommentsList comments={comment?.replies?.comments} />
+      {showReplies && <CommentsList comments={comment?.replies?.comments} />}
       </div>
     </div>
   ));
@@ -62,7 +67,7 @@ const CommentsContainer = ({totalComments,videoId}) => {
     const data = await fetch(YOUTUBE_COMMENTS_API+videoId);
     const response = await data.json();
     setCommentData(response.items);
-    // console.log("comments data", response.items);
+    console.log("comments data", response.items);
   };
   return (
     <div className="m-5 px-2">
