@@ -84,7 +84,28 @@ const WatchPage = () => {
                   Subscribe
                 </button>
               </div>
+              <div className="mt-2 ml-48">
+              <button className="bg-gray-100 flex  font-semibold px-4 py-2 rounded-3xl">
+                 <img className="h-6 w-6" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9InBvaW50ZXItZXZlbnRzOiBub25lOyBkaXNwbGF5OiBibG9jazsgd2lkdGg6IDEwMCU7IGhlaWdodDogMTAwJTsiPjxwYXRoIGQ9Ik0xOC43NywxMWgtNC4yM2wxLjUyLTQuOTRDMTYuMzgsNS4wMywxNS41NCw0LDE0LjM4LDRjLTAuNTgsMC0xLjE0LDAuMjQtMS41MiwwLjY1TDcsMTFIM3YxMGg0aDFoOS40MyBjMS4wNiwwLDEuOTgtMC42NywyLjE5LTEuNjFsMS4zNC02QzIxLjIzLDEyLjE1LDIwLjE4LDExLDE4Ljc3LDExeiBNNywyMEg0di04aDNWMjB6IE0xOS45OCwxMy4xN2wtMS4zNCw2IEMxOC41NCwxOS42NSwxOC4wMywyMCwxNy40MywyMEg4di04LjYxbDUuNi02LjA2QzEzLjc5LDUuMTIsMTQuMDgsNSwxNC4zOCw1YzAuMjYsMCwwLjUsMC4xMSwwLjYzLDAuMyBjMC4wNywwLjEsMC4xNSwwLjI2LDAuMDksMC40N2wtMS41Miw0Ljk0TDEzLjE4LDEyaDEuMzVoNC4yM2MwLjQxLDAsMC44LDAuMTcsMS4wMywwLjQ2QzE5LjkyLDEyLjYxLDIwLjA1LDEyLjg2LDE5Ljk4LDEzLjE3eiIvPjwvc3ZnPg==" alt="" />
+                 <p>{Math.floor(videoData?.statistics?.likeCount/1000)}K</p>
+                 <img className="h-6 w-6 ml-5 mr-4" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBmb2N1c2FibGU9ImZhbHNlIiBzdHlsZT0icG9pbnRlci1ldmVudHM6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyB3aWR0aDogMTAwJTsgaGVpZ2h0OiAxMDAlOyI+PHBhdGggZD0iTTE3LDRoLTFINi41N0M1LjUsNCw0LjU5LDQuNjcsNC4zOCw1LjYxbC0xLjM0LDZDMi43NywxMi44NSwzLjgyLDE0LDUuMjMsMTRoNC4yM2wtMS41Miw0Ljk0QzcuNjIsMTkuOTcsOC40NiwyMSw5LjYyLDIxIGMwLjU4LDAsMS4xNC0wLjI0LDEuNTItMC42NUwxNywxNGg0VjRIMTd6IE0xMC40LDE5LjY3QzEwLjIxLDE5Ljg4LDkuOTIsMjAsOS42MiwyMGMtMC4yNiwwLTAuNS0wLjExLTAuNjMtMC4zIGMtMC4wNy0wLjEtMC4xNS0wLjI2LTAuMDktMC40N2wxLjUyLTQuOTRsMC40LTEuMjlIOS40Nkg1LjIzYy0wLjQxLDAtMC44LTAuMTctMS4wMy0wLjQ2Yy0wLjEyLTAuMTUtMC4yNS0wLjQtMC4xOC0wLjcybDEuMzQtNiBDNS40Niw1LjM1LDUuOTcsNSw2LjU3LDVIMTZ2OC42MUwxMC40LDE5LjY3eiBNMjAsMTNoLTNWNWgzVjEzeiIvPjwvc3ZnPg==" alt="" />
+                </button>
+               
+              </div>
+              <div className=" ml-5 mt-2 ">
+              <button className="bg-gray-100 font-semibold px-5 py-2 flex  rounded-3xl">
+              <img className="h-6 w-6" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBmb2N1c2FibGU9ImZhbHNlIiBzdHlsZT0icG9pbnRlci1ldmVudHM6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyB3aWR0aDogMTAwJTsgaGVpZ2h0OiAxMDAlOyI+PHBhdGggZD0iTTE1IDUuNjMgMjAuNjYgMTIgMTUgMTguMzdWMTRoLTFjLTMuOTYgMC03LjE0IDEtOS43NSAzLjA5IDEuODQtNC4wNyA1LjExLTYuNCA5Ljg5LTcuMWwuODYtLjEzVjUuNjNNMTQgM3Y2QzYuMjIgMTAuMTMgMy4xMSAxNS4zMyAyIDIxYzIuNzgtMy45NyA2LjQ0LTYgMTItNnY2bDgtOS04LTl6Ii8+PC9zdmc+" alt="" /><span className="ml-2">Share</span>
+                </button>
+               
+              </div>
+              <div className="mt-2 ml-5 ">
+              <button className="bg-gray-100 font-semibold px-5 py-2 rounded-3xl flex">
+                  <img className="h-6 w-6" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBmb2N1c2FibGU9ImZhbHNlIiBzdHlsZT0icG9pbnRlci1ldmVudHM6IG5vbmU7IGRpc3BsYXk6IGJsb2NrOyB3aWR0aDogMTAwJTsgaGVpZ2h0OiAxMDAlOyI+PHBhdGggZD0iTTE3IDE4djFINnYtMWgxMXptLS41LTYuNi0uNy0uNy0zLjggMy43VjRoLTF2MTAuNGwtMy44LTMuOC0uNy43IDUgNSA1LTQuOXoiLz48L3N2Zz4=" alt="" /><span className="ml-2">Download</span>
+                </button>
+               
+              </div>
             </div>
+           
           </div>
         </div>
 
