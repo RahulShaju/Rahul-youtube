@@ -29,10 +29,11 @@ const SearchVideoContainer = () => {
   
       return queryWords.every(queryWord => videoTitle.includes(queryWord));
     });
-  }, [videos, suggestion]);
+  }, [videos,suggestion]);
 
   useEffect(() => {
     getVideos();
+    console.log("rererendreing")
   }, []);
 
   return (

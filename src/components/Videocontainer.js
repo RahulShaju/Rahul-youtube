@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const Videocontainer = () => {
   const [videos, setVideos] = useState([]);
   const dispatch = useDispatch()
-
+  const themeChanger = useSelector(store=>store.theme.isDark)
   const getVideos = async () => {
     try {
       const data = await fetch(YOUTUBE_VIDEO_API);
@@ -22,11 +22,13 @@ const Videocontainer = () => {
 
 
   useEffect(() => {
+    console.log("chekcing logging two times for asyn function inside consle.log")
     getVideos();
+    
   }, []);
 
   return (
-    <div className='flex flex-wrap mt-36 ml-24 '>
+    <div className={`flex flex-wrap mt-36 ml-24 ${themeChanger?'bg-black':''}`} >
       {/* {videos?.[0] && <ModifiedVideoCard info={videos[0]} name="modifiedcard using HOC" />} */}
       {videos?.length !== 0 && (
         videos?.map((video) => (

@@ -5,6 +5,7 @@ import { formatViewCount } from '../helpers/viewCount';
 
 const VideoCard = ({info}) => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  const themeChanger = useSelector(store=>store.theme.isDark)
         const {snippet,statistics} = info
     const {channelTitle,title,thumbnails} = snippet
   
@@ -13,9 +14,9 @@ const VideoCard = ({info}) => {
         <img className='rounded-lg w-full ' src={thumbnails?.medium?.url} alt="thumbnail" />
         <ul>
           <div className='flex  mt-2'>
-          <img className='w-10 h-10  rounded-3xl' src={snippet?.thumbnails?.high?.url} alt="" />
+          <img className='w-10 h-10  rounded-full' src={snippet?.thumbnails?.high?.url} alt="" />
             <div className='ml-3'>
-            <li className="font-bold " >{title}</li>
+            <li className={`font-bold ${themeChanger?'text-white':''} `} >{title}</li>
             <li className=' text-gray-500 font-semibold'>{channelTitle}</li>
             <div className='flex text-gray-500 font-semibold'>
             <li>{formatViewCount(statistics?.viewCount)}</li>

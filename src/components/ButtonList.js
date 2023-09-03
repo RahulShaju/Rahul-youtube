@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import Button from "./Button";
 import '../style.css'
+import { useSelector } from "react-redux";
 
 const list = [
   "All",
@@ -55,6 +56,8 @@ const ButtonList = () => {
   const [itemsPerPage, setItemsPerPage] = useState(1); // Initialize with 1
   const [currentPage, setCurrentPage] = useState(0);
   const maxPages = Math.ceil(list.length / itemsPerPage);
+  const themeChanger = useSelector(store=>store.theme.isDark)
+
 
   const updateItemsPerPage = () => {
     const containerWidth = window.innerWidth;
@@ -86,7 +89,7 @@ const ButtonList = () => {
   const visibleItems = list.slice(startIdx, startIdx + itemsPerPage);
 
   return (
-    <div className="carousel flex mt-20 fixed  bg-white w-full"> 
+    <div className={`carousel flex mt-20 fixed ${themeChanger?'bg-black':'bg-white'}  w-full`}> 
       <div className="arrows flex relative">
         <div className="prev-button-container">
           <button className=" text-white h-12 w-12 rounded-full" onClick={handleClickPrev} hidden={currentPage === 0}>

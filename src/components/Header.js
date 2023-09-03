@@ -4,6 +4,7 @@ import {toggleMenu} from '../utils/appSlice.js'
 import { YOUTUBE_SEARCH_API } from '../utils/constants.js'
 import { cachedResults,searchSuggestion } from '../utils/searchSlice.js'
 import { Link, useNavigate } from 'react-router-dom'
+import { changeTheme } from '../utils/themeSlice.js'
 
 
 
@@ -17,6 +18,8 @@ const Header = () => {
   const [inputValue,setInputValue] = useState("")
   
   const searchCache = useSelector(store=>store.search.cachedSuggestions)
+  const themeChanger = useSelector(store=>store.theme.isDark)
+
   
 
   useEffect(()=>{
@@ -68,12 +71,12 @@ const Header = () => {
      dispatch(toggleMenu())
   }
   return (
-    <div className='grid grid-flow-col p-5 z-10 fixed bg-white w-full'>
+<div className={`grid grid-flow-col p-5 z-10 fixed w-full ${themeChanger ? 'bg-black text-white' : 'bg-white'}`}>
       <div className='flex col-span-1'>
         <img onClick={()=>{
           handleToggleMenu()
-          }} className='h-8 cursor-pointer' src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-5.png" alt="menu" />
-        <img className='h-20 mx-10 -my-6 absolute' src="https://cdn.dribbble.com/users/14365882/screenshots/20257812/videohub.jpg" alt="yotube logo" />
+          }} className={!themeChanger?'h-8 cursor-pointer':"mb-2 h-8 w-16 -ml-2 cursor-pointer"} src={!themeChanger?"https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-5.png":"https://www.atulhost.com/wp-content/uploads/2023/01/animated-hamburger-menu-icon-300x169.png"} alt="menu" />
+        <img className='h-10 mx-10 -my-1 absolute' src="https://www.freepnglogos.com/uploads/youtube-logo-icon-transparent---32.png" alt="yotube logo" />
       </div>
       <div className='mx-80 col-span-10 w-3/4 justify-center'>
         <div >
@@ -81,8 +84,10 @@ const Header = () => {
               setSearchQuery(e.target.value)
               setInputValue(e.target.value)
               // dispatch(searchSuggestion(searchQuery))
-        }} className='w-1/2 h-10 border border-gray-400 rounded-l-full  pl-5' type="text" />
-        <button className='px-5 h-10 absolute  border border-gray-400 rounded-r-full bg-gray-100'><img className='h-6' src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9InBvaW50ZXItZXZlbnRzOiBub25lOyBkaXNwbGF5OiBibG9jazsgd2lkdGg6IDEwMCU7IGhlaWdodDogMTAwJTsiPjxwYXRoIGQ9Im0yMC44NyAyMC4xNy01LjU5LTUuNTlDMTYuMzUgMTMuMzUgMTcgMTEuNzUgMTcgMTBjMC0zLjg3LTMuMTMtNy03LTdzLTcgMy4xMy03IDcgMy4xMyA3IDcgN2MxLjc1IDAgMy4zNS0uNjUgNC41OC0xLjcxbDUuNTkgNS41OS43LS43MXpNMTAgMTZjLTMuMzEgMC02LTIuNjktNi02czIuNjktNiA2LTYgNiAyLjY5IDYgNi0yLjY5IDYtNiA2eiIvPjwvc3ZnPg==" alt="" /></button>
+        }} className={`w-1/2 h-10 border ${!themeChanger? 'border-gray-400':'border-gray-600 bg-gray-800'} rounded-l-full  pl-5`} type="text" />
+        <button className={`px-5 h-10 absolute  border ${!themeChanger? 'border-gray-400 rounded-r-full bg-gray-100':'border-gray-700 rounded-r-full bg-gray-900'}`}><img className='h-6' src={!themeChanger?
+        "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9InBvaW50ZXItZXZlbnRzOiBub25lOyBkaXNwbGF5OiBibG9jazsgd2lkdGg6IDEwMCU7IGhlaWdodDogMTAwJTsiPjxwYXRoIGQ9Im0yMC44NyAyMC4xNy01LjU5LTUuNTlDMTYuMzUgMTMuMzUgMTcgMTEuNzUgMTcgMTBjMC0zLjg3LTMuMTMtNy03LTdzLTcgMy4xMy03IDcgMy4xMyA3IDcgN2MxLjc1IDAgMy4zNS0uNjUgNC41OC0xLjcxbDUuNTkgNS41OS43LS43MXpNMTAgMTZjLTMuMzEgMC02LTIuNjktNi02czIuNjktNiA2LTYgNiAyLjY5IDYgNi0yLjY5IDYtNiA2eiIvPjwvc3ZnPg=="
+      :'https://www.citypng.com/public/uploads/preview/search-explore-white-icon-transparent-png-31634946340qymsafkpk6.png?v=2023082801'} alt="" /></button>
         </div>
         {suggestions.length!==0 && searchQuery?.length!==0 ? (<div className='mt-2 fixed bg-white shadow-xl  z-50  py-2  rounded-2xl w-[31rem]' >
           <ul>
@@ -92,8 +97,16 @@ const Header = () => {
           </ul>
         </div>):""}
       </div>
+      <div>
+        <button className='' onClick={()=>{
+          dispatch(changeTheme())
+        }}>
+          <img className='w-8 h-8 rounded-full' src="https://uploads.commoninja.com/searchengine/wordpress/wp-dark-mode.gif" alt="" />
+        </button>
+      </div>
+
       <div className='col-span-1'>
-        <img className='h-8' src="https://cdn-icons-png.flaticon.com/512/552/552721.png" alt="user icon" />
+        <img className='h-8 rounded-full' src="https://yt3.ggpht.com/nmUF3avGooCg_NXvcPFJEsEkefgN3RMlaJ29pEXnlCXfo9SjmxTHkCqhsMn_lbf2lUPJd_XOQA=s88-c-k-c0x00ffffff-no-rj" alt="user icon" />
       </div>
     </div>
   )

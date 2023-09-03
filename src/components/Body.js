@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux'
 import Header from './Header'
 
 const Body = () => {
-    
+  const themeChanger = useSelector(store=>store.theme.isDark)
   return (
   <>
   <Header/>
-    <div className='flex'>
-     <div className='w-64 fixed '>
+    <div className={`flex ${themeChanger?'bg-black':''}`}>
+     <div className={`w-64 fixed border border-none overflow-y-hidden ${themeChanger?'bg-black':''} `}>
      <SideBar/>
      </div>
      
