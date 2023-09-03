@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Rahul-youtube/static/css/main.a190a977.css",
+    "main.js": "/Rahul-youtube/static/js/main.5464c399.js",
+    "static/js/787.9733b43f.chunk.js": "/Rahul-youtube/static/js/787.9733b43f.chunk.js",
+    "index.html": "/Rahul-youtube/index.html",
+    "main.a190a977.css.map": "/Rahul-youtube/static/css/main.a190a977.css.map",
+    "main.5464c399.js.map": "/Rahul-youtube/static/js/main.5464c399.js.map",
+    "787.9733b43f.chunk.js.map": "/Rahul-youtube/static/js/787.9733b43f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a190a977.css",
+    "static/js/main.5464c399.js"
+  ]
+}
